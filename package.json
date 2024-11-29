@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "npx tsc",
     "start": "node dist/index.js",
     "dev": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/index.ts"
   },
@@ -19,7 +20,6 @@
     "typescript": "^5.6.3"
   },
   "dependencies": {
-    "@google-cloud/speech": "^6.7.0",
     "@types/ws": "^8.5.12",
     "assemblyai": "^4.4.5",
     "body-parser": "^1.20.3",
@@ -27,7 +27,6 @@
     "dotenv": "^16.4.5",
     "node-fetch": "^3.3.2",
     "openai": "^4.68.1",
-    "recordrtc": "^5.6.2",
     "zod": "^3.23.8"
   }
 }
