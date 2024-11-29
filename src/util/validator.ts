@@ -11,12 +11,14 @@ const errorMsgsMapping = (errors: ValidationErrors): string | undefined => {
 
   if (errors.children) {
     const { count, agesMissingCount } = errors.children;
+    const andOperator = msg ? ' &' : '';
+
     if (count === agesMissingCount && count === 1) {
-      msg = `${msg} & child age`
+      msg = `${msg}${andOperator} child age`
     } else if (count === agesMissingCount && count > 1) {
-      msg = `${msg} & children's ages`
+      msg = `${msg}${andOperator} children's ages`
     } else if (count !== agesMissingCount) {
-      msg = `${msg} & ${agesMissingCount} of the children's ages`
+      msg = `${msg}${andOperator} ${agesMissingCount} of the children's ages`
     }
   }
 
