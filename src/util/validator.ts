@@ -31,7 +31,7 @@ export const validateFlightsSchema = (schema: FlightsFieldsSchema): ResponseType
   if (!schema.originAirportName || !schema.originAirportCode) {
     errors.origin = true;
   }
-  if (!schema.destinationAirportName || !!schema.destinationAirportCode) {
+  if (!schema.destinationAirportName || !schema.destinationAirportCode) {
     errors.destination = true;
   }
   if (schema.childAges.length !== schema.childCount) {
@@ -48,5 +48,5 @@ export const validateFlightsSchema = (schema: FlightsFieldsSchema): ResponseType
 
   const errorMsg = errorMsgsMapping(errors);
 
-  return { success: !!errorMsg, schema: schema, error: errorMsg};
+  return { success: !errorMsg, schema: schema, error: errorMsg};
 };

@@ -28,7 +28,7 @@ export const buildFlightsUrl = (schema: FlightsFieldsSchema | null, site: string
   }).filter(item => item)
   .join('&');
 
-  return { schema: expediaFlightsMappedSchema, url: queryParamString };
+  return { schema: expediaFlightsMappedSchema, url: `/Flights-Search?${queryParamString}`, searchTitle: getSearchTitle(schema)};
 };
 
 const mapFlightsSchemaRecurse = (obj: any, schema: FlightsFieldsSchema, site: string) => {
@@ -137,4 +137,13 @@ const isNullPresent = (object: any): boolean => {
 const mapSubQueryParamString = (object: any): string => {
   return typeof object === 'object' ? 
     Object.keys(object).map(key => `${key}:${object[key]}`).join(',') : object;
+};
+
+const getSearchTitle = (schema: FlightsFieldsSchema): string => {
+  const originCode = schema.originAirportCode;
+  const destinationCode = schema.destinationAirportCode;
+  const departureDate = schema.departureDate;
+  const returnDate = schema.returnDate ? `, Return:${schema.returnDate}` : '';
+
+  return `${originCode} to ${destinationCode}, Departure:${departureDate}${returnDate}`;
 };
