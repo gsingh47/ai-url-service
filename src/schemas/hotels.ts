@@ -1,13 +1,14 @@
 import { z } from "zod";
 
-const HotelsInputFieldsSchema = z.object({
+export const HotelsInputFieldsSchema = z.object({
   destinationName:z.string(),
-  destinationCoordinates:z.object({
-      latitude:z.number(),
-      longitude:z.number()
-  }),
-  checkInDate:z.string(),
-  checkOutDate:z.string(),
-  adultCount:z.number(),
-  childCount:z.number()
+  checkInDate:z.string().nullable(),
+  checkOutDate:z.string().nullable(),
+  adultCount:z.string().nullable(),
+  childCount:z.string().nullable(),
+  childAges:z.string().array().nullable(),
+  roomCount:z.string().nullable()
 });
+
+
+export type HotelsFieldsSchema = z.infer<typeof HotelsInputFieldsSchema>;
